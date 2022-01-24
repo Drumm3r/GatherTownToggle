@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         gather.town microphone and camera toggle
 // @namespace    https://schoenenborn.info/
-// @version      1.0.0
+// @version      1.0.1
 // @description  A script which adds the possibility to toggle your camera and microphone with a simple key press
 // @author       Daniel Schönenborn
 // @match        https://gather.town/app/*
@@ -12,23 +12,49 @@
 (function () {
     'use strict';
 
-    document.addEventListener("keydown", function (keydownEvent) {
-        if (keydownEvent.code === "KeyM") {
-            let microphoneToggleButton = document.querySelector('[title="Enable microphone"]');
+    document.addEventListener('keydown', function (keydownEvent) {
+        let videoContainers = [
+            '.GameVideo-self-video-container',
+            '.GameVideosContainer-videobar-content',
+        ];
 
+        let videoContainersLength = videoContainers.length;
+        let microphoneToggleButton = null;
+        let cameraToggleButton = null;
+        let i = 0;
+
+        if (keydownEvent.code === 'KeyM') {            
+            while(microphoneToggleButton === null && i < videoContainersLength) {
+                microphoneToggleButton = document.querySelector(videoContainers[i] + ' [title="Enable microphone"]');
+
+                if (microphoneToggleButton === null) {
+                    microphoneToggleButton = document.querySelector(videoContainers[i] + ' [title="Disable microphone"]');
+                }
+
+                ++i;
+            }
+            
             if (microphoneToggleButton === null) {
-                microphoneToggleButton = document.querySelector('[title="Disable microphone"]');
+                return;
             }
 
             microphoneToggleButton.click();
             return;
         }
 
-        if (keydownEvent.code === "KeyC") {
-            let cameraToggleButton = document.querySelector('[title="Enable video"]');
+        if (keydownEvent.code === 'KeyC') {            
+            while(cameraToggleButton === null && i < videoContainersLength) {
+                cameraToggleButton = document.querySelector(videoContainers[i] + ' [title="Enable video"]');
+    
+                if (cameraToggleButton === null) {
+                    cameraToggleButton = document.querySelector(videoContainers[i] + ' [title="Disable video"]');
+                }
+
+                ++i;
+            }
 
             if (cameraToggleButton === null) {
-                cameraToggleButton = document.querySelector('[title="Disable video"]');
+                return;
             }
 
             cameraToggleButton.click();
