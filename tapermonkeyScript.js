@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name         gather.town microphone and camera toggle
 // @namespace    https://schoenenborn.info/
-// @version      1.1.0
+// @version      1.1.1
 // @description  A script which adds the possibility to toggle your microphone and camera with your keyboard.
 // @author       Daniel Schönenborn
-// @match        https://gather.town/app/*
+// @match        https://app.gather.town/app/*
 // @icon         https://www.google.com/s2/favicons?domain=gather.town
 // @grant        none
 // @license      CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/legalcode)

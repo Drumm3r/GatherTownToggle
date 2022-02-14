@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.1.1
+
+* Changed URL from gather.town to app.gather.town
+
 ## v1.1.0
 
 * Refactored single large function into smaller functions
